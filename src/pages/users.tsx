@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import Layout from '../components/layout'
 import userApi, { User } from '../api/users'
 import { Table } from 'antd'
 
@@ -34,11 +33,7 @@ const Users: FC = () => {
     { title: 'Company', dataIndex: 'company', key: 'company' },
   ]
 
-  return (
-    <Layout>
-      <Table dataSource={dataSource} columns={columns} />
-    </Layout>
-  )
+  return <Table dataSource={dataSource} columns={columns} />
 }
 
 export default Users

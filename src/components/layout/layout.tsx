@@ -1,13 +1,9 @@
 import { Layout, Menu, MenuProps } from 'antd'
 import Sider from 'antd/lib/layout/Sider'
 import React, { FC } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { FullScreen } from '../styles/container.styled'
-
-const siderItems: MenuProps['items'] = [
-  { key: 'users', label: 'Users' },
-  { key: 'posts', label: 'Posts' },
-]
 
 const Container = styled.div`
   display: flex;
@@ -21,13 +17,30 @@ const Body = styled.div`
   overflow-y: auto;
 `
 
-const layout: FC<{ children: React.ReactNode }> = ({ children }) => {
+const PageLayout: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const pathName = location.pathname.replace('/', '')
+
+  const siderItems: MenuProps['items'] = [
+    {
+      key: 'users',
+      label: 'Users',
+      onClick: () => navigate('/users'),
+    },
+    {
+      key: 'posts',
+      label: 'Posts',
+      onClick: () => navigate('/posts'),
+    },
+  ]
+
   return (
     <FullScreen>
       <Layout>
         <Container>
           <Sider theme="light">
-            <Menu mode="inline" items={siderItems}></Menu>
+            <Menu defaultSelectedKeys={[pathName]} mode="inline" items={siderItems}></Menu>
           </Sider>
           <Body>{children}</Body>
         </Container>
@@ -36,4 +49,4 @@ const layout: FC<{ children: React.ReactNode }> = ({ children }) => {
   )
 }
 
-export default layout
+export default PageLayout
