@@ -12,8 +12,8 @@ const Container = styled.div`
 
 const Body = styled.div`
   padding: 2rem;
-  height: 100%;
   height: 100vh;
+  width: 90vw;
   overflow-y: auto;
 `
 
