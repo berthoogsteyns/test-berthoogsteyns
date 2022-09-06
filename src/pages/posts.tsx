@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import postApi, { Post } from '../api/posts'
+import PostSkeleton from '../components/loaders/PostSkeleton'
 
 const PostWrapper = styled.div`
   padding: 1rem;
@@ -25,6 +26,8 @@ const Posts: FC = () => {
     }
     fetchPosts()
   }, [])
+
+  if (!posts) return <PostSkeleton />
 
   return (
     <>
