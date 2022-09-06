@@ -5,7 +5,7 @@ import PostSkeleton from '../components/loaders/PostSkeleton'
 
 const PostWrapper = styled.div`
   padding: 1rem;
-  background-color: #fcf8e8;
+  background-color: white;
   border-radius: 4px;
   margin-bottom: 2rem;
 `
