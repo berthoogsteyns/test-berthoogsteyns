@@ -26,8 +26,6 @@ module.exports = {
         // We will use TypeScript's types for component props instead
         'react/prop-types': 'off',
 
-        'no-console': ['error', { allow: ['warn', 'error'] }],
-
         // No need to import React when using Next.js
         'react/jsx-no-comment-textnodes': 'off',
 

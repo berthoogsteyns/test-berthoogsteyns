@@ -1,9 +1,44 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import Layout from '../components/layout'
+import userApi, { User } from '../api/users'
+import { Table } from 'antd'
 
-type Props = {}
+const Users: FC = () => {
+  const [users, setUsers] = useState<User[]>()
+  useEffect(() => {
+    async function fetchUsers(): Promise<void> {
+      const users = await userApi.allUsers()
+      if (users) setUsers(users)
+    }
+    fetchUsers()
+  }, [])
 
-const users: FC<Props> = (props) => {
-  return <div>users</div>
+  const dataSource = users?.map((user) => ({
+    key: user.id,
+    name: user.name,
+    username: user.username,
+    email: user.email,
+    address: `${user.address.city} ${user.address.street} ${user.address.suite}`,
+    phone: user.phone,
+    website: user.website,
+    company: user.company.name,
+  }))
+
+  const columns = [
+    { title: 'Name', dataIndex: 'name', key: 'name' },
+    { title: 'Username', dataIndex: 'username', key: 'username' },
+    { title: 'Email', dataIndex: 'email', key: 'email' },
+    { title: 'Address', dataIndex: 'address', key: 'address' },
+    { title: 'Phone', dataIndex: 'phone', key: 'phone' },
+    { title: 'Website', dataIndex: 'website', key: 'website' },
+    { title: 'Company', dataIndex: 'company', key: 'company' },
+  ]
+
+  return (
+    <Layout>
+      <Table dataSource={dataSource} columns={columns} />
+    </Layout>
+  )
 }
 
-export default users
+export default Users
