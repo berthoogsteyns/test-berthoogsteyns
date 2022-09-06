@@ -33,7 +33,7 @@ const Users: FC = () => {
     { title: 'Company', dataIndex: 'company', key: 'company' },
   ]
 
-  return <Table dataSource={dataSource} columns={columns} />
+  return <Table loading={!users} dataSource={dataSource} columns={columns} />
 }
 
 export default Users
