@@ -1,5 +1,4 @@
 import { Layout, Menu, MenuProps } from 'antd'
-import { Header } from 'antd/lib/layout/layout'
 import Sider from 'antd/lib/layout/Sider'
 import React, { FC } from 'react'
 import styled from 'styled-components'
@@ -12,24 +11,20 @@ const siderItems: MenuProps['items'] = [
 
 const Container = styled.div`
   display: flex;
-  height: calc(100vw - 64px);
+  height: 100vh;
 `
 
 const Body = styled.div`
   padding: 2rem;
-  width: 80vw;
-  background-color: '#A7D2CB';
+  height: 100%;
+  height: 100vh;
+  overflow-y: auto;
 `
 
 const layout: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <FullScreen>
       <Layout>
-        <Header>
-          <Menu theme="light" mode="horizontal">
-            Test
-          </Menu>
-        </Header>
         <Container>
           <Sider theme="light">
             <Menu mode="inline" items={siderItems}></Menu>
